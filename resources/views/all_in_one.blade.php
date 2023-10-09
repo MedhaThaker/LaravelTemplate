@@ -20,12 +20,38 @@
                 <form action="{{route('user.store')}}" method="post">
                     @csrf
                     <div class="form-group">
-                      <label for="name">First Name</label>
-                      <input type="text" class="form-control" name="name" id="name" placeholder="Please enter name" value="">
+                      <label for="f_name">First Name</label>
+                      <input type="text" class="form-control" name="f_name" id="f_name" placeholder="Please enter first name" value="">
                     </div>
                     <div class="form-group">
-                      <label for="email">User Email</label>
+                      <label for="m_name">Middle Name</label>
+                      <input type="text" class="form-control" name="m_name" id="m_name" placeholder="Please enter middle name" value="">
+                    </div>
+                    <div class="form-group">
+                      <label for="l_name">Last Name</label>
+                      <input type="text" class="form-control" name="l_name" id="l_name" placeholder="Please enter last name" value="">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
                       <input type="email" class="form-control" name="email" id="email" placeholder="Please enter email" value="">
+                    </div>
+                    <div class="form-group">
+                      <label for="dob">Date of birth</label>
+                      <input type="date" class="form-control" name="dob" id="dob" placeholder="Please enter date of birth" value="">
+                    </div>
+                    <div class="form-group">
+                      
+                   
+                    <label for="gender">Gender</label>
+
+                    <div class="form-check form-check-inline">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="gender" id="gender" value="male"> Male
+                        <input class="form-check-input" type="radio" name="gender" id="gender" value="female"> Female
+                        <input class="form-check-input" type="radio" name="gender" id="gender" value="other"> Other
+                        <input class="form-check-input" type="radio" name="gender" id="gender" value="prefer not to say"> Prefer not to say
+                      </label>
+                    </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
