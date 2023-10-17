@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+  <a href="{{route('user.create')}}" class="btn btn-info">Add</a>
       <table class="table">
         <thead>
             <tr>
@@ -21,7 +22,7 @@
         <tbody>
             @foreach($data as $dt)
             <tr>
-                <td>{{$dt->name}}</td>
+                <td>{{$dt->f_name}}</td>
                 <td>{{$dt->email}}</td>
                 <td>
                     <a href="{{route('user.show',$dt->id)}}" class="btn btn-info">Show</a>

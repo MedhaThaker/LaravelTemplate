@@ -31,7 +31,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required'
+            'f_name'=>'required|regex:/[A-Za-z]/',
+            'email'=>'required',
+            'mobile'=>'required',
+            'password'=>'required'
         ]);
         $input = $request->all();
         User::create($input);
@@ -43,7 +46,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data = User::where('id',$id)->get();
+        return view('list', ['data'=> $data]);
     }
 
     /**
@@ -53,7 +57,7 @@ class UserController extends Controller
     {
         $data = User::where('id',$id)->first();
 
-        return view('edit',['data'=> $data]);
+        return view('all_in_one',['data'=> $data]);
     }
 
     /**
@@ -63,7 +67,7 @@ class UserController extends Controller
     {
         $input = $request->all();
         $input = Arr::except($input, ['_token','_method']);
-        User::where('id', $id)->update($input);
+        User::find($id)->update($input);
         
         return redirect('user')->withSuccess('Updated Successfully!');
     }

@@ -20,7 +20,7 @@ class ApiController extends Controller
 
     public function addUser(Request $request)
     {
-        $request->validate(['name' => 'required']);
+        $request->validate(['f_name' => 'required']);
         $input = $request->all();
         $result = User::create($input);
 
