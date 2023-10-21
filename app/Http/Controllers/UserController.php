@@ -31,14 +31,18 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'f_name'=>'required|regex:/[A-Za-z]/',
-            'email'=>'required',
-            'mobile'=>'required',
-            'password'=>'required'
+            'f_name'=>'required|regex:(^([a-zA-z ]+)?$)',
+            // 'm_name'=>'regex:(^([a-zA-z ]+)?$)',
+            // 'l_name'=>'regex:(^([a-zA-z ]+)?$)',
+            // 'email'=>'required|regex:(^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$)',
+            // 'mobile'=>'required|regex:(^((?:[1-9][0-9 ().-]{5,28}[0-9])|(?:(00|0)( ){0,1}[1-9][0-9 ().-]{3,26}[0-9])|(?:(\+)( ){0,1}[1-9][0-9 ().-]{4,27}[0-9]))$)',
+            // 'password'=>'required',
+        ],[
+            'f_name.regex' => "First name contains only letters."
         ]);
         $input = $request->all();
         User::create($input);
-        return view('all_in_one');
+        return redirect('user');
     }
 
     /**
@@ -65,6 +69,17 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'f_name'=>'required|regex:(^([a-zA-z ]+)?$)',
+            'm_name'=>'regex:(^([a-zA-z ]+)?$)',
+            'l_name'=>'regex:(^([a-zA-z ]+)?$)',
+            'email'=>'required|regex:(^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$)',
+            'mobile'=>'required|regex:(^((?:[1-9][0-9 ().-]{5,28}[0-9])|(?:(00|0)( ){0,1}[1-9][0-9 ().-]{3,26}[0-9])|(?:(\+)( ){0,1}[1-9][0-9 ().-]{4,27}[0-9]))$)',
+            'password'=>'required'
+        ],[
+            'f_name.regex' => "First name contains only letters.",
+            'f_name.required' => "First name is required."
+        ]);
         $input = $request->all();
         $input = Arr::except($input, ['_token','_method']);
         User::find($id)->update($input);

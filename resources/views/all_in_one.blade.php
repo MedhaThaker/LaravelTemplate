@@ -21,36 +21,40 @@
 
       <form action="{{!empty($data->id) ? route('user.update',$data->id) : route('user.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        {{method_field('PUT')}}
+        {{!empty($data->id) ? method_field('PUT') : ''}}
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label for="f_name">First Name</label>
-              <input type="text" class="form-control" name="f_name" id="f_name" placeholder="Please enter first name" value="{{ !empty($data->f_name) ? $data->f_name : '' }}">
+              <input type="text" class="form-control" name="f_name" id="f_name" placeholder="Please enter first name" value="{{ !empty($data->f_name) ? $data->f_name : old('f_name') }}">
+              @error('f_name')
+              <div class="error">{{ $message }}</div>
+              @enderror
+              
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="m_name">Middle Name</label>
-              <input type="text" class="form-control" name="m_name" id="m_name" placeholder="Please enter middle name" value="{{ !empty($data->m_name) ? $data->m_name : '' }}">
+              <input type="text" class="form-control" name="m_name" id="m_name" placeholder="Please enter middle name" value="{{ !empty($data->m_name) ? $data->m_name : old('m_name') }}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="l_name">Last Name</label>
-              <input type="text" class="form-control" name="l_name" id="l_name" placeholder="Please enter last name" value="{{ !empty($data->l_name) ? $data->l_name : '' }}">
+              <input type="text" class="form-control" name="l_name" id="l_name" placeholder="Please enter last name" value="{{ !empty($data->l_name) ? $data->l_name : old('l_name') }}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" class="form-control" name="email" id="email" placeholder="Please enter email" value="{{ !empty($data->email) ? $data->email : '' }}">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Please enter email" value="{{ !empty($data->email) ? $data->email : old('email') }}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="dob">Date of birth</label>
-              <input type="date" class="form-control" name="dob" id="dob" placeholder="Please enter date of birth" value="{{ !empty($data->dob) ? $data->dob : '' }}">
+              <input type="date" class="form-control" name="dob" id="dob" placeholder="Please enter date of birth" max="<?php echo date("d-m-Y"); ?>" value="{{ !empty($data->dob) ? $data->dob : old('dob') }}">
             </div>
           </div>
           <div class="col-md-4">
@@ -69,49 +73,49 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="mobile">Mobile</label>
-              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Please enter mobile number" value="{{ !empty($data->mobile) ? $data->mobile : '' }}">
+              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="Please enter mobile number" value="{{ !empty($data->mobile) ? $data->mobile : old('mobile') }}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="age">Age</label>
-              <input type="text" class="form-control" name="age" id="age" readonly value="{{ !empty($data->age) ? $data->age : '' }}">
+              <input type="text" class="form-control" name="age" id="age" readonly value="{{ !empty($data->age) ? $data->age : old('age') }}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="country">Country</label>
-              <input type="text" class="form-control" name="country" id="country" placeholder="Please enter country name" value="{{ !empty($data->country) ? $data->country : '' }}">
+              <input type="text" class="form-control" name="country" id="country" placeholder="Please enter country name" value="{{ !empty($data->country) ? $data->country : old('country') }}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="state">State</label>
-              <input type="text" class="form-control" name="state" id="state" placeholder="Please enter state name" value="{{ !empty($data->state) ? $data->state : '' }}">
+              <input type="text" class="form-control" name="state" id="state" placeholder="Please enter state name" value="{{ !empty($data->state) ? $data->state : old('state') }}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="city">City</label>
-              <input type="text" class="form-control" name="city" id="city" placeholder="Please enter city name" value="{{ !empty($data->city) ? $data->city : '' }}">
+              <input type="text" class="form-control" name="city" id="city" placeholder="Please enter city name" value="{{ !empty($data->city) ? $data->city : old('city') }}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="address">Address</label>
-              <textarea class="form-control" name="address" id="address" rows="3" placeholder="Please enter cddress">{{ !empty($data->address) ? $data->address : '' }}</textarea>
+              <textarea class="form-control" name="address" id="address" rows="3" placeholder="Please enter cddress">{{ !empty($data->address) ? $data->address : old('address') }}</textarea>
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="pincode">Pincode</label>
-              <input type="text" class="form-control" name="pincode" id="pincode" placeholder="Please enter pincode" value="{{ !empty($data->pincode) ? $data->pincode : '' }}">
+              <input type="text" class="form-control" name="pincode" id="pincode" placeholder="Please enter pincode" value="{{ !empty($data->pincode) ? $data->pincode : old('pincode') }}">
             </div>
           </div>
           <div class="col-md-4">
             <div class="form-group">
               <label for="nationality">Nationality</label>
-              <input type="text" class="form-control" name="nationality" id="nationality" placeholder="Please enter nationality" value="{{ !empty($data->nationality) ? $data->nationality : '' }}">
+              <input type="text" class="form-control" name="nationality" id="nationality" placeholder="Please enter nationality" value="{{ !empty($data->nationality) ? $data->nationality : old('nationality') }}">
             </div>
           </div>
           <div class="col-md-4">
@@ -123,55 +127,55 @@
           <div class="col-md-4">
             <div class="form-group">
               <label for="occupation">Occupation</label>
-              <input type="text" class="form-control" name="occupation" id="occupation" placeholder="Please enter occupation" value="{{ !empty($data->occupation) ? $data->occupation : '' }}">
+              <input type="text" class="form-control" name="occupation" id="occupation" placeholder="Please enter occupation" value="{{ !empty($data->occupation) ? $data->occupation : old('occupation') }}">
             </div>
           </div>
-        <div class="col-md-4">
+          <div class="col-md-4">
             <div class="form-group">
               <label for="company_name">Company Name</label>
-              <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Please enter company name" value="{{ !empty($data->company_name) ? $data->company_name : '' }}">
+              <input type="text" class="form-control" name="company_name" id="company_name" placeholder="Please enter company name" value="{{ !empty($data->company_name) ? $data->company_name : old('company_name') }}">
             </div>
           </div>
-        <div class="col-md-4">
+          <div class="col-md-4">
             <div class="form-group">
               <label for="education_level">Education Level</label>
-              <input type="text" class="form-control" name="education_level" id="education_level" placeholder="Please enter education level" value="{{ !empty($data->education_level) ? $data->education_level : '' }}">
+              <input type="text" class="form-control" name="education_level" id="education_level" placeholder="Please enter education level" value="{{ !empty($data->education_level) ? $data->education_level : old('educational_level') }}">
             </div>
           </div>
-        <div class="col-md-4">
+          <div class="col-md-4">
             <div class="form-group">
               <label for="marital_status">Marital Status</label>
-              <input type="text" class="form-control" name="marital_status" id="marital_status" placeholder="Please enter marital status" value="{{ !empty($data->marital_status) ? $data->marital_status : '' }}">
+              <input type="text" class="form-control" name="marital_status" id="marital_status" placeholder="Please enter marital status" value="{{ !empty($data->marital_status) ? $data->marital_status : old('marital_status') }}">
             </div>
           </div>
-        <div class="col-md-4">
+          <div class="col-md-4">
             <div class="form-group">
               <label for="preffered_language">Preffered Language</label>
-              <input type="text" class="form-control" name="preffered_language" id="preffered_language" placeholder="Please enter preffered language" value="{{ !empty($data->preffered_language) ? $data->preffered_language : '' }}">
+              <input type="text" class="form-control" name="preffered_language" id="preffered_language" placeholder="Please enter preffered language" value="{{ !empty($data->preffered_language) ? $data->preffered_language : old('preffered_language') }}">
             </div>
           </div>
-        <div class="col-md-4">
+          <div class="col-md-4">
             <div class="form-group">
               <label for="religion">Religion</label>
-              <input type="text" class="form-control" name="religion" id="religion" placeholder="Please enter religion" value="{{ !empty($data->religion) ? $data->religion : '' }}">
+              <input type="text" class="form-control" name="religion" id="religion" placeholder="Please enter religion" value="{{ !empty($data->religion) ? $data->religion : old('religion') }}">
             </div>
           </div>
-        <div class="col-md-4">
+          <div class="col-md-4">
             <div class="form-group">
               <label for="interests">Interests</label>
-              <input type="text" class="form-control" name="interests" id="interests" placeholder="Please enter interests" value="{{ !empty($data->interests) ? $data->interests : '' }}">
+              <input type="text" class="form-control" name="interests" id="interests" placeholder="Please enter interests" value="{{ !empty($data->interests) ? $data->interests : old('interests') }}">
             </div>
           </div>
-        <div class="col-md-4">
+          <div class="col-md-4">
             <div class="form-group">
               <label for="preffered_communication_method">Preffered Communication Method</label>
-              <input type="text" class="form-control" name="preffered_communication_method" id="preffered_communication_method" placeholder="Please enter preference" value="{{ !empty($data->preffered_communication_method) ? $data->preffered_communication_method : '' }}">
+              <input type="text" class="form-control" name="preffered_communication_method" id="preffered_communication_method" placeholder="Please enter preference" value="{{ !empty($data->preffered_communication_method) ? $data->preffered_communication_method : old('preffered_communication_method') }}">
             </div>
           </div>
-          <div class="col-md-4" style="display:{{ !empty($data->password) ? 'none' : 'block' }}" >
+          <div class="col-md-4" style="display:{{ !empty($data->password) ? 'none' : 'block' }}">
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" id="password" placeholder="Please enter password" >
+              <input type="password" class="form-control" name="password" id="password" placeholder="Please enter password">
             </div>
           </div>
           <div class="col-md-4" style="display:{{ !empty($data->password) ? 'none' : 'block' }}">
@@ -189,9 +193,9 @@
   </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
